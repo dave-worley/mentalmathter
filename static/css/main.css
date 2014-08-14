@@ -1,0 +1,63 @@
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+  background: url(/static/img/pJewmf8.jpg);
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -50px;
+  padding-bottom: 50px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 50px;
+  background-color: #e5e5e5;
+  font-size: 80%
+}
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+nav {
+  height: 51px;
+  margin-bottom: 1em;
+}
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus {
+  background-color: deepskyblue;
+}
+.navbar-brand .span1 {
+  color: deeppink;
+}
+.navbar-brand .span2 {
+  color: deepskyblue;
+}
+
+.navbar>.container .navbar-brand,
+.navbar>.container-fluid .navbar-brand {
+  font-family: "Helvetica", san-serif;
+  color: #fff;
+  letter-spacing: 0.2em;
+}
+.tagline p {
+  color: #000;
+  font-size: 120%;
+}
+div.content {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #000;
+}

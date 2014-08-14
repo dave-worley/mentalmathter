@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Simple Addition{% endblock %}
+{% block content %}
+  <h1>Simple Addition</h1>
+  <hr>
+  <div class="jumbotron">
+    <form class="problem" action=".">
+      <input type="text"/>
+    </form>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script type="text/javascript">
+    (function($) {
+      $(function () {
+        var operands, upperLimit, lowerLimit;
+        upperLimit = 79;
+        lowerLimit = 10;
+        operands = [
+          Math.round(Math.random() * upperLimit + lowerLimit),
+          Math.round(Math.random() * upperLimit + lowerLimit)
+        ];
+        for (var i = 0; i < operands.length; i++) {
+          $('form.problem').prepend(operands[i]);
+          if (i !== operands.length - 1) {
+
+          }
+        }
+        $('form.problem').on('submit', function () {
+          $(this)
+        });
+      });
+    })(jQuery);
+  </script>
+{% endblock %}
