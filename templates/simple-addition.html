@@ -5,7 +5,7 @@
   <hr>
   <div class="jumbotron">
     <form class="problem" action=".">
-      <input type="text"/>
+      <input id="answer" type="text"/>
     </form>
   </div>
 {% endblock %}
@@ -13,21 +13,35 @@
   <script type="text/javascript">
     (function($) {
       $(function () {
-        var operands, upperLimit, lowerLimit;
+        var operands, upperLimit, lowerLimit, problemtext;
         upperLimit = 79;
         lowerLimit = 10;
         operands = [
           Math.round(Math.random() * upperLimit + lowerLimit),
           Math.round(Math.random() * upperLimit + lowerLimit)
         ];
+        problemtext = '';
         for (var i = 0; i < operands.length; i++) {
-          $('form.problem').prepend(operands[i]);
+          problemtext += operands[i];
           if (i !== operands.length - 1) {
-
+            problemtext += ' + '
+          } else {
+            problemtext += ' = '
           }
         }
-        $('form.problem').on('submit', function () {
-          $(this)
+        $('form.problem').prepend(problemtext);
+        $('form.problem').on('submit', function (evt) {
+          evt.preventDefault();
+          var sum = 0;
+          for (var i = 0; i < operands.length; i++) {
+            sum += operands[i];
+          }
+          if (sum == $('#answer').val()) {
+            alert('correct!');
+          } else {
+            alert('incorrect!');
+          }
+          window.location.reload();
         });
       });
     })(jQuery);
