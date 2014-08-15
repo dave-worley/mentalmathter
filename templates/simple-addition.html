@@ -1,49 +1,31 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}Simple Addition{% endblock %}
 {% block content %}
   <h1>Simple Addition</h1>
   <hr>
-  <div class="jumbotron">
-    <form class="problem" action=".">
-      <input id="answer" type="text"/>
-    </form>
+  <div class="row feedback">
+    <div class="col-md-12">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="jumbotron">
+        <form class="problem" action=".">
+          <div class="answer">
+            <input tabindex="0" id="answer" type="text"/>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <h3>Explanation:</h3>
+      <p>Try adding left to right!</p>
+    </div>
   </div>
 {% endblock %}
 {% block scripts %}
-  <script type="text/javascript">
-    (function($) {
-      $(function () {
-        var operands, upperLimit, lowerLimit, problemtext;
-        upperLimit = 79;
-        lowerLimit = 10;
-        operands = [
-          Math.round(Math.random() * upperLimit + lowerLimit),
-          Math.round(Math.random() * upperLimit + lowerLimit)
-        ];
-        problemtext = '';
-        for (var i = 0; i < operands.length; i++) {
-          problemtext += operands[i];
-          if (i !== operands.length - 1) {
-            problemtext += ' + '
-          } else {
-            problemtext += ' = '
-          }
-        }
-        $('form.problem').prepend(problemtext);
-        $('form.problem').on('submit', function (evt) {
-          evt.preventDefault();
-          var sum = 0;
-          for (var i = 0; i < operands.length; i++) {
-            sum += operands[i];
-          }
-          if (sum == $('#answer').val()) {
-            alert('correct!');
-          } else {
-            alert('incorrect!');
-          }
-          window.location.reload();
-        });
-      });
-    })(jQuery);
+  <script type="text/javascript" src="{% static 'js/simpleadd.js' %}">
   </script>
 {% endblock %}

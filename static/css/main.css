@@ -31,9 +31,13 @@ body {
     padding-right: 20px;
   }
 }
+#footer {
+  background-color: #000;
+}
 nav {
-  height: 51px;
+  height: 52px;
   margin-bottom: 1em;
+  border-bottom: 1px solid #fff;
 }
 .navbar-inverse .navbar-nav>li>a:hover,
 .navbar-inverse .navbar-nav>li>a:focus {
@@ -59,5 +63,30 @@ nav {
 div.content {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px #000;
+  box-shadow: 0 0 13px #000;
+}
+
+form.problem {
+  padding: 1em;
+  border-radius: 1em;
+}
+div.problem {
+  font-size: 300%;
+}
+div.problem hr {
+  border-top-color: black;
+}
+div.answer,
+div.operand {
+  text-align: right;
+}
+div.operation {
+  float: left;
+}
+div.answer input {
+  font-size: 200%;
+  text-align: right;
+}
+div.feedback {
+  display: none;
 }
