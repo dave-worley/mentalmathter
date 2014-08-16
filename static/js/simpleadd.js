@@ -31,31 +31,38 @@
       }
       return this.problemNode;
     };
+    ProblemHandler.prototype.showFeedback = function (callback) {
+      var sum = 0;
+      $.each(this.operands, function (i, operand) {
+        sum += operand;
+      });
+      this.makeFeedbackDiv(sum, 'Correct!', 'Inorrect!');
+      $('div.feedback').fadeIn(function () {
+        callback();
+      });
+    };
+    ProblemHandler.prototype.makeFeedbackDiv = function (sum, successMessage, failMessage) {
+      var feedback, feedbackdiv;
+      feedback = $('<div>').addClass('alert');
+      if (sum == $('#answer').val()) {
+        feedback.addClass('alert-success');
+        feedback.text(successMessage);
+      } else {
+        feedback.addClass('alert-danger');
+        feedback.text(failMessage);
+      }
+      feedbackdiv = $('div.feedback div.col-md-12').empty();
+      feedbackdiv.append(feedback);
+    };
     var main = function () {
-      var problem = new ProblemHandler();
+      var problem;
+      problem = new ProblemHandler();
       $('form.problem').find('div.problem').remove();
       $('form.problem').prepend(problem.problemNode);
       $('form.problem').off('submit');
       $('form.problem').on('submit', function (evt) {
         evt.preventDefault();
-        var feedback, sum;
-        sum = 0;
-        for (var i = 0; i < problem.operands.length; i++) {
-          sum += problem.operands[i];
-        }
-        feedback = $('<div>').addClass('alert');
-        if (sum == $('#answer').val()) {
-          feedback.addClass('alert-success');
-          feedback.text('Correct!');
-        } else {
-          feedback.addClass('alert-danger');
-          feedback.text('Inorrect!');
-        }
-        $('div.feedback div.col-md-12').empty();
-        $('div.feedback div.col-md-12').append(feedback);
-        $('div.feedback').fadeIn(function () {
-          main();
-        });
+        problem.showFeedback(main);
       });
       $('#answer').val('').focus();
     };
