@@ -1,7 +1,7 @@
 (function ($) {
   $(function () {
     var ProblemHandler = function () {
-      this.upperLimit = 99;
+      this.upperLimit = 89;
       this.lowerLimit = 10;
       this.operands = [
         Math.round(Math.random() * this.upperLimit + this.lowerLimit),
