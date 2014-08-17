@@ -21,6 +21,10 @@ App.ProblemRoute = Ember.Route.extend({
       into: 'application',
       outlet: 'explanation'
     });
+    this.render('feedback', {
+      into: 'application',
+      outlet: 'feedback'
+    });
   }
 });
 App.problem = Ember.Object.extend({
@@ -43,12 +47,33 @@ App.problem = Ember.Object.extend({
     Math.round(Math.random() * 89 + 10),
     Math.round(Math.random() * 89 + 10)
   ])
+  },
+  feedback: null,
+  'updateFeedback': function () {
+    var sum, answer;
+    sum = 0;
+    answer = parseInt($('#answer').val());
+    $.each(this.get('operands'), function (i, operand) {
+      sum += operand;
+    });
+    if (sum === answer) {
+      return this.set('feedback',{
+        'success': true,
+        'message': 'Correct!'
+      });
+    } else {
+      return this.set('feedback',{
+        'success': false,
+        'message': 'Incorrect!'
+      });
+    }
   }
 });
 var problem = App.problem.create();
 App.ProblemView = Ember.View.extend({
   submit: function (evt) {
     evt.preventDefault();
+    problem.updateFeedback();
     problem.remake();
     $('#answer').val('').focus();
   }

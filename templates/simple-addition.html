@@ -6,16 +6,16 @@
   <div id="app"></div>
   {% verbatim %}
   <script type="text/x-handlebars">
-    <div class="row feedback">
-      <div class="col-md-12"></div>
-    </div>
     <div class="row">
       <div class="col-md-5">
-        <div class="jumbotron">
+        <div class="jumbotron problempanel">
+          <div class="feedback">
+              {{outlet feedback}}
+          </div>
           {{#view 'problem'}}
           <form class="problem" action=".">
             <div class="row">
-              {{ outlet problem }}
+              {{outlet problem}}
             </div>
             <div class="answer">
               <input tabindex="0" id="answer" type="text"/>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="col-md-7">
-        {{ outlet explanation }}
+        {{outlet explanation}}
       </div>
     </div>
   </script>
@@ -53,6 +53,14 @@
       </div>
       <div class="operation col-md-3 col-md-pull-9">+</div>
     </div>
+  </script>
+  <script type="text/x-handlebars" id="feedback">
+  {{#if feedback}}
+    {{#if feedback.success}}<div class="success"><span class="glyphicon glyphicon-ok"></div></span>
+    {{else}}<div class="fail"><span class="glyphicon glyphicon-remove"></span></div>{{/if}}
+
+    </div>
+  {{/if}}
   </script>
   {% endverbatim %}
 {% endblock %}

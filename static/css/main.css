@@ -89,6 +89,30 @@ div.answer input {
   font-size: 200%;
   text-align: right;
 }
-div.feedback {
-  display: none;
+div.problempanel {
+  position: relative;
 }
+div.feedback {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  font-size: 150%;
+}
+div.feedback div.success,
+div.feedback div.fail {
+  border: 5px solid #000;
+  border-radius: 125px;
+  padding: 0.25em;
+  line-height: 0;
+}
+div.feedback div.success {
+  background-color: lightgreen;
+  border-color: green;
+  color: green;
+}
+div.feedback div.fail {
+  background-color: pink;
+  border-color: red;
+  color: red;
+}
+
