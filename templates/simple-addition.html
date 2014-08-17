@@ -1,31 +1,61 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
+{% extends 'base.html' %}{% load staticfiles %}
 {% block title %}Simple Addition{% endblock %}
 {% block content %}
   <h1>Simple Addition</h1>
   <hr>
-  <div class="row feedback">
-    <div class="col-md-12">
-
+  <div id="app"></div>
+  {% verbatim %}
+  <script type="text/x-handlebars">
+    <div class="row feedback">
+      <div class="col-md-12"></div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-5">
-      <div class="jumbotron">
-        <form class="problem" action=".">
-          <div class="answer">
-            <input tabindex="0" id="answer" type="text"/>
-          </div>
-        </form>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="jumbotron">
+          {{#view 'problem'}}
+          <form class="problem" action=".">
+            <div class="row">
+              {{ outlet problem }}
+            </div>
+            <div class="answer">
+              <input tabindex="0" id="answer" type="text"/>
+            </div>
+          </form>
+          {{/view}}
+        </div>
+      </div>
+      <div class="col-md-7">
+        {{ outlet explanation }}
       </div>
     </div>
-    <div class="col-md-7">
-      <h3>Explanation:</h3>
-      <p>Try adding left to right!</p>
+  </script>
+  <script type="text/x-handlebars" id="explanation">
+    <h3>Explanation:</h3>
+
+    <p>Try adding left to right!</p>
+
+    <p>Take the tens from {{operands.[0]}}, {{positions.[0].tens}}, and add that to the tens from {{operands.[1]}}, {{positions.[1].tens}}:</p>
+
+    <p>{{positions.[0].tens}} + {{positions.[1].tens}}</p>
+
+    <p>Then, take the ones from {{operands.[0]}}, {{positions.[0].ones}}, and add that to the ones from {{operands.[1]}}, {{positions.[1].ones}}:</p>
+
+    <p>{{positions.[0].ones}} + {{positions.[1].ones}}</p>
+
+    <p>Add any carryover from the ones to the tens.</p>
+  </script>
+  <script type="text/x-handlebars" id="problem">
+    <div class="problem">
+      <div class="col-md-9 col-md-push-3">
+        {{#each operands}}
+        <div class="operand">{{this}}</div>
+        {{/each}}
+      </div>
+      <div class="operation col-md-3 col-md-pull-9">+</div>
     </div>
-  </div>
+  </script>
+  {% endverbatim %}
 {% endblock %}
 {% block scripts %}
-  <script type="text/javascript" src="{% static 'js/simpleadd.js' %}">
-  </script>
+  <script type="text/javascript" src="{% static 'js/simpleadd.js' %}"></script>
 {% endblock %}

@@ -82,6 +82,8 @@ div.operand {
 }
 div.operation {
   float: left;
+  position: relative;
+  top: 1.5em;
 }
 div.answer input {
   font-size: 200%;
