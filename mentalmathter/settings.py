@@ -94,4 +94,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 if IS_REMOTE:
-    STATIC_ROOT = '/home/zenlab/webapps/mathterstatic'
+    STATIC_ROOT = '/home/zenlab/webapps/mmstatic'
